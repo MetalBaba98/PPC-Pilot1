@@ -28,28 +28,29 @@ for url in links:
     # For different language newspaper refer above table
     toi_article = Article(url, language="en")  # en for English
 
-    # To download the article
-    toi_article.download()
+    try:
+        # To download the article
+        toi_article.download()
+        # To parse the article
+        toi_article.parse()
+        # To perform natural language processing ie..nlp
+        toi_article.nlp()
+        
+        # To extract title
+        print("Article's Title:")
+        title = toi_article.title
+        print(title)
+        print("n")
 
-    # To parse the article
-    toi_article.parse()
+        # To extract keywords
+        print("Article's Keywords:")
+        key = toi_article.keywords
+        print(key)
 
-    # To perform natural language processing ie..nlp
-    toi_article.nlp()
-
-    # To extract title
-    print("Article's Title:")
-    title = toi_article.title
-    print(title)
-    print("n")
-
-    # To extract keywords
-    print("Article's Keywords:")
-    key = toi_article.keywords
-    print(key)
-
-    if 'messi' in key:
-        list.append((url,title,key))
+        if 'messi' in key:
+            list.append((url,title,key))
+    except:
+        pass
 
     time.sleep(.75)
 
